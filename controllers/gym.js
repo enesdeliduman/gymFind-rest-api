@@ -1,3 +1,5 @@
+const bcrypt = require("bcrypt")
+
 const Gym = require("../models/Gym")
 
 const utils = require("../utils/index")
@@ -31,6 +33,7 @@ module.exports.editProfile = async (req, res) => {
         }
     }
 }
+
 module.exports.photoUpload = async (req, res) => {
     try {
         let photos = []
@@ -46,5 +49,19 @@ module.exports.photoUpload = async (req, res) => {
     catch (err) {
         res.status(500).json({ message: "Internal server error", err })
         console.error("Internal server error in editProfile", err)
+    }
+}
+
+module.exports.changedPassword = async (req, res) => {
+    const userId = req.user._id
+    const password = req.body.password
+    const newPassword = req.body.newPassword
+    try {
+        if (utils.isValidObjectId("65e1f70c713ff930e6720969", res)) return
+        await utils.changedPassword(Gym, userId, password, newPassword,res)
+    }
+    catch (err) {
+        res.status(500).json({ message: "Internal server error", err })
+        console.error("Internal server error in changedPasswordGymController", err)
     }
 }

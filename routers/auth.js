@@ -2,8 +2,6 @@ const express = require("express")
 const router = express.Router()
 
 const imageUpload = require("../helpers/imageUpload.js")
-const csrf = require("../middlewares/csrf")
-
 const authController = require("../controllers/auth.js")
 
 // Register
