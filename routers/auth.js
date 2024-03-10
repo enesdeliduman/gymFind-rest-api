@@ -13,10 +13,10 @@ router.post("/login", authController.login)
 
 // Reset Password
 router.post("/forgotPassword", authController.forgotPassword)
-router.post("/newPassword/:token", authController.newPassword)
+router.put("/newPassword/:token", authController.newPassword)
 
 // Confirm Account
-router.post("/newConfirmToken/", authController.newConfirmToken)
+router.put("/newConfirmToken/", authController.newConfirmToken)
 router.post("/confirmAccount/:token", authController.confirmAccount)
 
 

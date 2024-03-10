@@ -11,7 +11,8 @@ const UserSchema = new Schema({
     surname: {
         type: String,
         required: [true, "Please enter your surname"],
-        trim: true
+        trim: true,
+        minLength: [2, "Please provide a surname with min length 2"]
     },
     password: {
         type: String,
@@ -64,6 +65,9 @@ const UserSchema = new Schema({
             type: Date,
             default: null
         }
+    },
+    telephone: {
+        type: Number
     }
 });
 UserSchema.pre('save', async function (next) {

@@ -1,4 +1,4 @@
-const mailTemp = (name,token,text ,linkText ) => {
+const mailTemp = (name, token, text, linkText) => {
     return (
         `<!doctype html>
 <html>
@@ -15,7 +15,7 @@ const mailTemp = (name,token,text ,linkText ) => {
 <body style="font-family:Montserrat, sans-serif;">
     <div
         style="border-radius: 15px; text-align: start; background-color: #212121; color: white; font-size:x-large; align-content: center; margin: auto; width:500px;">
-        <h1 style="padding: 25px 25px 1px 25px;">GYM-REST-API</h1>
+        <h1 style="padding: 25px 25px 1px 25px;">${process.env.SITE_NAME}</h1>
         <div
             style="background-color: #f1f1f1; border-radius: 14px; border-radius: 0px 0px 14px 14px; font-size: medium; padding-bottom: 25px;">
             <div style="padding: 10px 25px; color: #212121;">

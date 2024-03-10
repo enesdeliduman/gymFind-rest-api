@@ -25,7 +25,7 @@ const GymSchema = new Schema({
     },
     description: {
         type: String,
-        maxLength:[300,"the size of the description should be no more than 100 characters"]
+        maxLength: [300, "the size of the description should be no more than 100 characters"]
     },
     telephone: {
         type: String
@@ -60,6 +60,10 @@ const GymSchema = new Schema({
         type: String,
         default: "gym",
         immutable: true
+    },
+    isSuspend: {
+        type: Boolean,
+        default: false
     },
     isConfirm: {
         type: Boolean,
