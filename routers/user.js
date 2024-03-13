@@ -11,15 +11,10 @@ router.get("/getAllGyms", userController.getAllGyms)
 router.get("/getNearbyGyms", [isAuth], userController.getNearbyGyms)
 router.get("/getGym/:id/:slug", userController.getGym)
 
-router.post("/setRating", [isAuth], userController.setRating)
+router.post("/setRating", [isAuth, isConfirm], userController.setRating)
 
-router.put("/editProfile", [isAuth, isConfirm], userController.editProfile)
-router.put("/changedPassword", [isAuth, isConfirm], userController.changedPassword)
-router.put("/ppChanged", [isAuth, isConfirm], imageUpload.upload.single('photo'), userController.ppChanged)
-
-router.get("/err", (req, res, next) => {
-    const err = new Error("Test error");
-    next(err);
-})
+router.put("/editProfile", [isAuth], userController.editProfile)
+router.put("/changedPassword", [isAuth], userController.changedPassword)
+router.put("/ppChanged", [isAuth], imageUpload.upload.single('photo'), userController.ppChanged)
 
 module.exports = router
