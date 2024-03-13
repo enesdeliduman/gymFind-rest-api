@@ -47,11 +47,11 @@ const GymSchema = new Schema({
     },
     photos: [{
         type: String,
-        max: 2
+        max: 25
     }],
     rating: {
         type: [Number],
-        default: [5, 4, 1]
+        default: []
     },
     slug: {
         type: String

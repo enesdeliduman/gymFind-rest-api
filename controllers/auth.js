@@ -81,7 +81,7 @@ module.exports.gymRegister = asyncHandler(async (req, res, next) => {
         subject: `Confirm Account | Message from ${process.env.SITE_NAME}`,
         html: mailContent
     })
-    res.status(201).json({ success: true, gym })
+   return res.status(201).json({ success: true, gym })
 })
 
 module.exports.login = asyncHandler(async (req, res, next) => {
