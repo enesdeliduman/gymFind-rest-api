@@ -11,53 +11,8 @@ module.exports.getAllGyms = asyncHandler(async (req, res, next) => {
 })
 
 module.exports.getNearbyGyms = asyncHandler(async (req, res, next) => {
-  // const filters = [
-  //   {
-  //     $match: {
-  //       "address.city": req.user.address.city
-  //     }
-  //   },
-  //   {
-  //     $addFields: {
-  //       cityMatch: { $cond: { if: { $eq: ["$city", req.user.address.city] }, then: 1, else: 0 } }
-  //     }
-  //   },
-  //   {
-  //     $sort: { cityMatch: -1, rating: -1 }
-  //   }
-  // ];
-  // if (req.query.rating) {
-  //   if (req.query.rating == 1) {
-  //     filters.push({
-  //       $sort: { cityMatch: -1, rating: 1 }
-  //     });
-  //   } else {
-  //     filters.push({
-  //       $sort: { cityMatch: -1, rating: -1 }
-  //     });
-  //   }
-  // }
-  // const matchingGyms = await Gym.aggregate(filters)
-  // res.status(200).json({ successfull: true, count: matchingGyms.length, matchingGyms })
-
-  // const neighborhood = await Gym.find({
-  //   "address.neighborhood": req.user.address.neighborhood
-  // })
-  // const district = await Gym.find({
-  //   "address.district": req.user.address.district
-  // })
-  // const city = await Gym.find({
-  //   "address.city": req.user.address.city
-  // })
-  // const gym = await Gym.find({
-  //   "address.city": "Bursa",
-  //   'address.district': "Nilufer",
-  //   'address.neighborhood': "Odunluk"
-  // }).sort({ distance: 1 });
   const nearestGyms = await Gym.find({
     'address.city': req.user.address.city,
-    'address.district': req.user.address.district,
-    'address.neighborhood': req.user.address.neighborhood,
     isSuspend: false
   }).sort({ distance: 1 });
   res.status(200).json({ successfull: true, count: nearestGyms.length, nearestGyms })

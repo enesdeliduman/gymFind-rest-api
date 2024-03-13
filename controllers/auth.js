@@ -41,7 +41,6 @@ module.exports.userRegister = asyncHandler(async (req, res, next) => {
     const mailContent = mailTemp(name, token, "Welcome aboard! To fully utilize our platform, you need to verify your account. You can verify your account by clicking on the link we've sent you.",
         "Click on the text.");
     await sendMail.sendMail({
-        from: process.env.EMAIL_FROM,
         to: email,
         subject: `Confirm Account | Message from ${process.env.SITE_NAME}`,
         html: mailContent
@@ -78,7 +77,6 @@ module.exports.gymRegister = asyncHandler(async (req, res, next) => {
     const mailContent = mailTemp(name, token, "Welcome aboard! To fully utilize our platform, you need to verify your account. You can verify your account by clicking on the link we've sent you.",
         "Click on the text.");
     await sendMail.sendMail({
-        from: process.env.EMAIL_FROM,
         to: email,
         subject: `Confirm Account | Message from ${process.env.SITE_NAME}`,
         html: mailContent
@@ -142,7 +140,6 @@ module.exports.forgotPassword = asyncHandler(async (req, res, next) => {
 
     const mailContent = mailTemp(user.name, token, "We've heard you've forgotten your password. We're sorry about that. The link we sent you to reset your password will expire in 5 minutes.", "You can reset your password by clicking on the link provided in the text.");
     await sendMail.sendMail({
-        from: process.env.EMAIL_FROM,
         to: user.email,
         subject: `Reset Password | Message from ${process.env.SITE_NAME}`,
         html: mailContent
@@ -194,7 +191,6 @@ module.exports.newConfirmToken = asyncHandler(async (req, res, next) => {
     const mailContent = mailTemp(user.name, token, "To fully utilize our platform, you need to verify your account. You can verify your account by clicking on the link we've sent you.",
         "Click on the text.");
     await sendMail.sendMail({
-        from: process.env.EMAIL_FROM,
         to: email,
         subject: `Confirm Account | Message from ${process.env.SITE_NAME}`,
         html: mailContent
@@ -214,7 +210,7 @@ module.exports.confirmAccount = asyncHandler(async (req, res, next) => {
             confirmToken: token
         })
         if (!gym) {
-            return res.status(404).json({ success: false, message: "No such user found" })
+            return res.status(404).json({ success: false, message: "Token is invalid or has expired." })
         }
         user = gym
     }

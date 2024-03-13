@@ -17,5 +17,9 @@ router.put("/editProfile", [isAuth, isConfirm], userController.editProfile)
 router.put("/changedPassword", [isAuth, isConfirm], userController.changedPassword)
 router.put("/ppChanged", [isAuth, isConfirm], imageUpload.upload.single('photo'), userController.ppChanged)
 
+router.get("/err", (req, res, next) => {
+    const err = new Error("Test error");
+    next(err);
+})
 
 module.exports = router

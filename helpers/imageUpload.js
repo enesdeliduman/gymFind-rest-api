@@ -9,7 +9,6 @@ const storage = multer.diskStorage({
         cb(null, path.parse(file.originalname).name + "-" + Date.now() + path.extname(file.originalname));
     }
 })
-
 const upload = multer({ storage: storage })
 
 module.exports.upload = upload

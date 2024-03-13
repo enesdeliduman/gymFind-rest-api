@@ -15,7 +15,7 @@ module.exports.getGym = asyncHandler(async (req, res, next) => {
     if (utils.isValidObjectId(id, res)) return
     const gym = await Gym.findById(id).select("name photo photos email telephone address isConfirm suspend rating")
     if (!gym) {
-        return res.status(404).json({ success: false, message: "Gym not found." })
+        return res.status(404).json({ success: false, message: "The result you are looking for could not be found." })
     }
     res.status(200).json({ success: true, gym })
 })
@@ -25,7 +25,7 @@ module.exports.suspendGym = asyncHandler(async (req, res, next) => {
     if (utils.isValidObjectId(id, res)) return
     const gym = await Gym.findById(id)
     if (!gym) {
-        return res.status(404).json({ success: false, message: "Gym not found." })
+        return res.status(404).json({ success: false, message: "The result you are looking for could not be found." })
     }
     gym.isSuspend = true
     await gym.save()
@@ -37,7 +37,7 @@ module.exports.unsuspendGym = asyncHandler(async (req, res, next) => {
     if (utils.isValidObjectId(id, res)) return
     const gym = await Gym.findById(id)
     if (!gym) {
-        return res.status(404).json({ success: false, message: "Gym not found." })
+        return res.status(404).json({ success: false, message: "The result you are looking for could not be found." })
     }
     gym.isSuspend = false
     await gym.save()
@@ -49,7 +49,7 @@ module.exports.deleteGym = asyncHandler(async (req, res, next) => {
     if (utils.isValidObjectId(id, res)) return
     const gym = await Gym.findByIdAndDelete(id)
     if (!gym) {
-        return res.status(404).json({ success: false, message: "Gym not found." })
+        return res.status(404).json({ success: false, message: "The result you are looking for could not be found." })
     }
     res.status(200).json({ success: true, message: "Account successfully deleted." })
 })
@@ -65,7 +65,7 @@ module.exports.getUser = asyncHandler(async (req, res, next) => {
     const user = await User.findById(id).select("name photo email telephone address isConfirm suspend rating")
     if (utils.isValidObjectId(id, res)) return
     if (!user) {
-        return res.status(404).json({ success: false, message: "User not found." })
+        return res.status(404).json({ success: false, message: "The result you are looking for could not be found." })
     }
     res.status(200).json({ success: true, user })
 })
@@ -76,7 +76,7 @@ module.exports.deleteUser = asyncHandler(async (req, res, next) => {
     const user = await Gym.findByIdAndDelete(id)
     if(!user){
         if (!user) {
-            return res.status(404).json({ success: false, message: "User not found." })
+            return res.status(404).json({ success: false, message: "The result you are looking for could not be found." })
         }
     }
     res.status(200).json({ success: true, message: "Account successfully deleted." })
