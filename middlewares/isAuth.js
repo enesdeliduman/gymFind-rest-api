@@ -10,7 +10,6 @@ module.exports = async function (req, res, next) {
         next()
     }
     catch (ex) {
-        res.status(401).json({ success: false, message: "Token Expired", ex })
         if (ex.name == "TokenExpiredError") {
             return res.status(401).json({ success: false, message: "Token Expired" })
         }
